@@ -1,6 +1,4 @@
-def main():
-    print("Hello from loan-approval-prediction!")
+import streamlit as st
 
-
-if __name__ == "__main__":
-    main()
+st.title("LoanScope")
+st.write("Analyze loan data — or check your own approval chances before you apply.")
