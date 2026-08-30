@@ -29,3 +29,6 @@ with st.container(border=True):
     st.write("No data needed — just answer a few questions.")
     if st.button("Go to Check Eligibility"):
         st.switch_page("pages/Check_Eligibility.py")
+
+st.divider()
+st.caption("Built with Python, scikit-learn, and Streamlit — a machine learning project for loan approval prediction.")

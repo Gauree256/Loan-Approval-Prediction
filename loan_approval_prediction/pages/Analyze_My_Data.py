@@ -10,7 +10,9 @@ st.title("Analyze My Data")
 uploaded_file = st.file_uploader("Upload your CSV file", type="csv")
 
 if uploaded_file is not None:
-    st.session_state["df"] = pd.read_csv(uploaded_file)
+    temp_df = pd.read_csv(uploaded_file)
+    temp_df.columns = temp_df.columns.str.strip()
+    st.session_state["df"] = temp_df
 
 if "df" in st.session_state:
     df = st.session_state["df"]
@@ -48,7 +50,7 @@ if "df" in st.session_state:
     st.subheader("Train Model")
 
     target_col = "loan_status"
-    id_cols = [col for col in df.columns if "id" in col.lower()]
+    id_cols = [col for col in df.columns if col.lower().endswith("_id") or col.lower() == "id"]
 
     if target_col not in df.columns:
         st.warning("This dataset doesn't have a 'loan_status' column, so a model can't be trained.")
