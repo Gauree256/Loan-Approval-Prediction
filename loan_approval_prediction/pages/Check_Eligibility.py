@@ -3,12 +3,15 @@ import pandas as pd
 from model_utils import preprocess_data, train_logistic_regression
 from sklearn.preprocessing import LabelEncoder
 from suggestions import get_suggestions
+import os
 
 st.title("Check Eligibility")
 st.write("No data needed — just answer a few questions to see your loan approval chances.")
 st.info("This tool is for educational purposes only and does not represent an actual bank decision. Real loan approval depends on many more factors.")
 
-df = pd.read_csv("data/loan_approval_dataset.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "..", "data", "loan_approval_dataset.csv")
+df = pd.read_csv(DATA_PATH)
 df.columns = df.columns.str.strip()
 
 target_col = "loan_status"
